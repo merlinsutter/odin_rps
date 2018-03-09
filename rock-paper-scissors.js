@@ -7,15 +7,25 @@ function computerPlay() {
   return choice;
 }
 
+// A function to convert a string input into lower case w/ first letter capitalized
+function caseCorrection(string) {
+  string = string.toLowerCase();
+  return string.charAt(0).toUpperCase() + string.slice(1);
+}
+
 // Play one round of Rock, Paper, Scissors
 function playRound(playerSelection, computerSelection)
 {
+  // Make player selection input case insensitive by correcting for variation
+  let playerCorrected = caseCorrection(playerSelection);
+
+  // Play the round and return the result
   let result = (playerSelection === computerSelection) ? 'That\'s a draw!' :
-            (((playerSelection === 'Rock') && (computerSelection === 'Scissors')) ||
-            ((playerSelection === 'Paper') && (computerSelection === 'Rock')) ||
-            ((playerSelection === 'Scissors') && (computerSelection === 'Paper'))) ?
-            `You win! ${playerSelection} beats ${computerSelection}` :
-            `You lose! ${computerSelection} beats ${playerSelection}`;
+            (((playerCorrected === 'Rock') && (computerSelection === 'Scissors')) ||
+            ((playerCorrected === 'Paper') && (computerSelection === 'Rock')) ||
+            ((playerCorrected === 'Scissors') && (computerSelection === 'Paper'))) ?
+            `You win! ${playerCorrected} beats ${computerSelection}` :
+            `You lose! ${computerSelection} beats ${playerCorrected}`;
   return result;
 }
 
