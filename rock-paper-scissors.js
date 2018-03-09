@@ -7,23 +7,26 @@ function computerPlay() {
   return choice;
 }
 
-// Play one round of Rock, Paper, scissors
+// Play one round of Rock, Paper, Scissors
 function playRound(playerSelection, computerSelection)
 {
-  playerSelection = prompt('What do you choose?');
-  computerSelection = computerPlay();
-
-  let win;
-
-  if (playerSelection === computerSelection)
-  {
-
-  }
-
-  if (win)
-  {
-    alert(`You win! ${playerSelection} beats ${computerSelection}`);
-  } else {
-    alert(`You lose! ${computerSelection} beats ${playerSelection}`);
-  }
+  let result = (playerSelection === computerSelection) ? 'That\'s a draw!' :
+            (((playerSelection === 'Rock') && (computerSelection === 'Scissors')) ||
+            ((playerSelection === 'Paper') && (computerSelection === 'Rock')) ||
+            ((playerSelection === 'Scissors') && (computerSelection === 'Paper'))) ?
+            `You win! ${playerSelection} beats ${computerSelection}` :
+            `You lose! ${computerSelection} beats ${playerSelection}`;
+  return result;
 }
+
+
+/*
+
+playerSelection = prompt('What do you choose - Rock, Paper, or Scissors?');
+computerSelection = computerPlay();
+
+//Alternative solution 1 for playRound(): Switch statement
+
+//Alternative solution 2 for playRound(): If statement
+
+*/
