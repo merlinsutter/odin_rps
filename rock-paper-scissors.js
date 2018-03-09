@@ -7,10 +7,12 @@ function computerPlay() {
   return choice;
 }
 
-// A function to convert a string input into lower case w/ first letter capitalized
-function caseCorrection(string) {
-  string = string.toLowerCase();
-  return string.charAt(0).toUpperCase() + string.slice(1);
+// Get user input & adjust for variation by converting to lower case w/
+// capitalized first letter
+function humanPlay() {
+  let input = prompt('What do you choose - Rock, Paper, or Scissors?');
+  input = input.toLowerCase();
+  return input.charAt(0).toUpperCase() + input.slice(1);
 }
 
 // Play one round of Rock, Paper, Scissors
