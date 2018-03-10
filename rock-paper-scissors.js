@@ -7,8 +7,7 @@ function computerPlay() {
   return choice;
 }
 
-// Get user input & adjust for variation by converting to lower case w/
-// capitalized first letter
+// Get and clean up user input
 function humanPlay() {
   let input = prompt('What do you choose - Rock, Paper, or Scissors?');
   input = input.toLowerCase();
@@ -16,29 +15,46 @@ function humanPlay() {
 }
 
 // Play one round of Rock, Paper, Scissors
-function playRound(playerSelection, computerSelection)
-{
-  // Make player selection input case insensitive by correcting for variation
-  let playerCorrected = caseCorrection(playerSelection);
-
-  // Play the round and return the result
-  let result = (playerSelection === computerSelection) ? 'That\'s a draw!' :
-            (((playerCorrected === 'Rock') && (computerSelection === 'Scissors')) ||
-            ((playerCorrected === 'Paper') && (computerSelection === 'Rock')) ||
-            ((playerCorrected === 'Scissors') && (computerSelection === 'Paper'))) ?
-            `You win! ${playerCorrected} beats ${computerSelection}` :
-            `You lose! ${computerSelection} beats ${playerCorrected}`;
+function playRound(playerSelection, computerSelection) {
+  let result = (playerSelection === computerSelection) ? 'Draw' :
+            (((playerSelection === 'Rock') && (computerSelection === 'Scissors')) ||
+            ((playerSelection === 'Paper') && (computerSelection === 'Rock')) ||
+            ((playerSelection === 'Scissors') && (computerSelection === 'Paper'))) ?
+            `Player` :
+            `Computer`;
   return result;
 }
 
+// Play a full game of five rounds, keep score and announce the winner
+function game() {
+  let roundCount = 1;
+  let playerScore = 0;
+  let computerScore = 0;
 
-/*
+  while (roundCount <= 5) {
+    playerSelection = humanPlay();
+    computerSelection = computerPlay();
 
-playerSelection = prompt('What do you choose - Rock, Paper, or Scissors?');
-computerSelection = computerPlay();
+    let roundWinner = playRound(playerSelection, computerSelection);
 
-//Alternative solution 1 for playRound(): Switch statement
+    if (roundWinner === 'Player') {
+      playerScore ++;
+      console.log(`You win round ${roundCount}! ${playerSelection} beats ${computerSelection}`);
+    } else if (roundWinner === 'Computer') {
+      computerScore ++;
+      console.log(`You lose round ${roundCount}! ${computerSelection} beats ${playerSelection}`);
+    } else {
+      console.log('That\'s a draw!');
+    }
 
-//Alternative solution 2 for playRound(): If statement
+    roundCount++;
+  }
 
-*/
+  let finalResult =  (playerScore > computerScore) ?
+                `You win ${playerScore} to ${computerScore}` :
+                (playerScore < computerScore) ?
+                `You lose ${playerScore} to ${computerScore}` :
+                'That\'s a draw!';
+  console.log(finalResult);
+  return finalResult;
+}
