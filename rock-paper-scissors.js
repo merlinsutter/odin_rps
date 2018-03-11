@@ -7,7 +7,7 @@ function computerPlay() {
   return choice;
 }
 
-// Get and clean up user input
+// Get user input, clean it up and ensure validity
 function humanPlay() {
   let input = prompt('What do you choose - Rock, Paper, or Scissors?');
   input = input.toLowerCase();
@@ -20,8 +20,7 @@ function playRound(playerSelection, computerSelection) {
             (((playerSelection === 'Rock') && (computerSelection === 'Scissors')) ||
             ((playerSelection === 'Paper') && (computerSelection === 'Rock')) ||
             ((playerSelection === 'Scissors') && (computerSelection === 'Paper'))) ?
-            `Player` :
-            `Computer`;
+            `Player` : `Computer`;
   return result;
 }
 
@@ -44,7 +43,7 @@ function game() {
       computerScore ++;
       console.log(`You lose round ${roundCount}! ${computerSelection} beats ${playerSelection}`);
     } else {
-      console.log('That\'s a draw!');
+      console.log('That\'s a draw!')
     }
 
     roundCount++;
