@@ -43,7 +43,7 @@ function game() {
       computerScore ++;
       console.log(`You lose round ${roundCount}! ${computerSelection} beats ${playerSelection}`);
     } else {
-      console.log('That\'s a draw!')
+      console.log('That\'s a draw!');
     }
 
     roundCount++;
